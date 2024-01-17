@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:31:45 by erramos           #+#    #+#             */
-/*   Updated: 2024/01/17 16:10:27 by erramos          ###   ########.fr       */
+/*   Updated: 2024/01/17 17:43:11 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_stack {
 	int	x;
-	struct s_stack *previus;
+	struct s_stack *previous;
 	struct s_stack *next;
 } stk;
 

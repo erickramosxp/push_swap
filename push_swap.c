@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:44:28 by erramos           #+#    #+#             */
-/*   Updated: 2024/01/17 16:18:34 by erramos          ###   ########.fr       */
+/*   Updated: 2024/01/17 17:42:55 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 {
 	int	i;
 	stk	*stack = NULL;
+	stk	*new_node = NULL;
 	stk	*head = NULL;
 
 	i = 1;
