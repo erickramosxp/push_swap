@@ -5,32 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: erramos <erramos@student.42.rio>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/01/15 15:38:34 by erramos           #+#    #+#              #
-#    Updated: 2024/01/17 15:55:21 by erramos          ###   ########.fr        #
+#    Created: 2023/11/09 15:45:17 by erramos           #+#    #+#              #
+#    Updated: 2023/11/14 14:52:53 by erramos          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-NAMELIB = push_swap.a
-FLAGS = -Wall -Wextra -Werror
+NAME = libftprintf.a
 
-all:	$(NAME)
+CFLAGS = cc -Wall -Wextra -Werror
+
+FILES =	ft_printf.c ft_printhex.c ft_printpoint.c ft_printnb.c \
+	ft_printu.c ft_counthex.c
+
+DIRLIB = libft/
+
+LIBFT =	ft_itoa.c ft_putchar.c ft_putstr.c \
+	ft_strdup.c ft_strlen.c
+
+OBJS = $(FILES:.c=.o) $(LIBFT:.c:.o)
+
+all: $(NAME)
 
 $(NAME):
-	$(MAKE) -C ./libft/ft_printf/
-	$(MAKE) -C ./libft/
-	ar -r ./libft/libft.a ./libft/ft_printf/*.o
-	cp ./libft/libft.a ./
-	mv libft.a $(NAMELIB)
-	cc $(FLAGS) push_swap.c $(NAMELIB) -o push_swap
+	$(CFLAGS) -I. -c $(FILES) $(addprefix libft/,$(LIBFT))
+	ar rcs $(NAME) $(OBJS) $(LIBFT:.c=.o)
 
 clean:
-	$(MAKE) clean -C ./libft/ft_printf/
-	$(MAKE) clean -C ./libft/
+	rm -f $(OBJS)
+	rm -f $(LIBFT:.c=.o)
 
 fclean: clean
-	$(MAKE) fclean -C ./libft/ft_printf/
-	$(MAKE) fclean -C ./libft/
-	rm -rf $(NAMELIB) push_swap
+	rm -f $(NAME)
 
 re:	fclean all
