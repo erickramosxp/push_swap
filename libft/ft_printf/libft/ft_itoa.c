@@ -39,6 +39,8 @@ char	*ft_itoa(int n)
 	char	*new;
 	int		signal;
 
+	new = NULL;
+	signal = 0;
 	if (n == 0)
 		return (ft_strdup("0"));
 	else if (n == -2147483648)
