@@ -102,6 +102,42 @@ int check_sorted(char **numbrs, int i, int fix)
 	return (1);
 }
 
+void sort_two(stk *stackA)
+{
+	int nb;
+
+	nb = stackA->next->x;
+	stackA->next->x = stackA->x;
+	stackA->x = nb;
+}
+
+void sort_tree(stk *stackA)
+{
+	int i;
+
+	i = 0;
+	while (i < 2)
+	{
+		if (stackA->x > stackA->next->next->x)
+		{
+			rotate(stackA);
+			write(1, "ra\n", 3);
+		}
+		if ((stackA->x > stackA->next->x) || (stackA->next->x > stackA->next->next->x))
+		{
+			swap(stackA);
+			write(1, "sa\n", 3);
+		}
+		i++;
+	}
+}
+/*
+void sort_five(stk *stackA, stk *stackB)
+{
+
+}
+*/
+
 int	check_args(char **numbrs, int i)
 {
 	int fix;
@@ -113,6 +149,8 @@ int	check_args(char **numbrs, int i)
 		j = 0;
 		while (numbrs[i][j])
 		{
+			if (numbrs[i][j] == '-' || numbrs[i][j] == '+')
+				j++;
 			if (!ft_isdigit(numbrs[i][j]))
 			{
 				ft_printf("Um dos valores não é um digito.");
@@ -172,7 +210,8 @@ int	main(int argc, char **argv)
 	}
 
 	stackA = head;
-	rotate(stackA);
+	sort_tree(stackA);
+//	rotate(stackA);
 //	swap(stackA);
 	print_list(stackA);
 	ft_printf("\n");
