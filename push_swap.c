@@ -25,30 +25,58 @@ void	swap(stk *stack)
 /*
 void	push(stk *stackA, stk *stackB)
 {
-	
+	int	n;
+	stk *temp;
 
-}
-*/
+	if (stackB == NULL)
+		return ;
+	
+	n = stackA->x;
+	temp = stackB;
+	while (stackB->next != NULL)
+		stackB = stackB->next;
+	stackB->next = (stk *)malloc(sizeof(stk));
+	stackB->next->next = NULL;
+	stackB = temp;
+	while (stackB->next != NULL)
+	{
+		n = stackB->next-x;
+		stackB->next-x = stackB->x;
+	}
+
+	 = temp->x;
+
+
+}*/
+
 void	rotate(stk *stack)
 {
 	int	n;
-	stk *head;
 
-	head = stack;
+	n = stack->x;
 	while (stack->next != NULL)
 	{
+		stack->x = stack->next->x;
 		stack = stack->next;
 	}
-	n = stack->x;
-	stack->x = head->x;
-	head->x = n;
+	stack->x = n;
 }
-/*
-void	reverse_rotate(stk *stack)
-{
 
+void	rrotate(stk *stack)
+{
+	stk *head;
+	int	n;
+
+	head = stack;
+	n = stack->x;
+	while (stack->next != NULL)
+	{
+		n = stack->next->x;
+		stack->next->x = n;
+		stack = stack->next;
+	}
+	stack->x = n;
 }
-*/
 
 void	print_list(stk *list)
 {
@@ -118,7 +146,7 @@ void sort_tree(stk *stackA)
 	i = 0;
 	while (i < 2)
 	{
-		if (stackA->x > stackA->next->next->x)
+		if ((stackA->x > stackA->next->x) && (stackA->x > stackA->next->next->x))
 		{
 			rotate(stackA);
 			write(1, "ra\n", 3);
@@ -210,8 +238,8 @@ int	main(int argc, char **argv)
 	}
 
 	stackA = head;
-	sort_tree(stackA);
-//	rotate(stackA);
+//	sort_tree(stackA);
+	rotate(stackA);
 //	swap(stackA);
 	print_list(stackA);
 	ft_printf("\n");
