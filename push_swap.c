@@ -23,6 +23,15 @@ void	swap(stk *stack)
 	stack->next->x = n;
 }
 
+stk *last(stk *node)
+{
+	while (node->next != NULL)
+	{
+		node = node->next;
+	}
+	return (node);
+}
+
 void	push(stk **stackA, stk **stackB)
 {
 	stk *temp;
@@ -30,21 +39,24 @@ void	push(stk **stackA, stk **stackB)
 	if (stackA == NULL)
 		return ;
 	temp = *stackA;
+
 	*stackA = (*stackA)->next;
 	temp->next = *stackB;
 	*stackB = temp;
-	(*stackB)->next = NULL;
+//	(*stackB)->next = NULL;
 }
 
 void rotate(stk **stack)
 {
 	stk *tail;
 
-    if (*stack == NULL)
-        return ;
+    if (*stack == NULL) {
+		return ;
+	}
 	tail = *stack;
-    while (tail->next != NULL)
+    while (tail->next != NULL) {
         tail = tail->next;
+	}
 	tail->next = *stack;
     *stack = (*stack)->next;
     tail->next->next = NULL;
@@ -209,7 +221,7 @@ int	main(int argc, char **argv)
 	stackA->next = NULL;
 	head = stackA;
 	stackB = malloc(sizeof(stk));
-	stackB->next = NULL;
+	stackB = NULL;
 	ft_printf("\n");
 	if (!stackA)
 		exit(1);
@@ -233,6 +245,7 @@ int	main(int argc, char **argv)
 //	swap(stackA);
 	ft_printf("\nstack A: \n");
 	print_list(stackA);
+	push(&stackA, &stackB);
 	push(&stackA, &stackB);
 	push(&stackA, &stackB);
 	ft_printf("\nstack A depois: \n");
