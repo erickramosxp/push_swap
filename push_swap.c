@@ -22,60 +22,49 @@ void	swap(stk *stack)
 	head->x = stack->next->x;
 	stack->next->x = n;
 }
-/*
-void	push(stk *stackA, stk *stackB)
+
+void	push(stk **stackA, stk **stackB)
 {
-	int	n;
 	stk *temp;
 
-	if (stackB == NULL)
+	if (stackA == NULL)
 		return ;
-	
-	n = stackA->x;
-	temp = stackB;
-	while (stackB->next != NULL)
-		stackB = stackB->next;
-	stackB->next = (stk *)malloc(sizeof(stk));
-	stackB->next->next = NULL;
-	stackB = temp;
-	while (stackB->next != NULL)
-	{
-		n = stackB->next-x;
-		stackB->next-x = stackB->x;
-	}
-
-	 = temp->x;
-
-
-}*/
-
-void	rotate(stk *stack)
-{
-	int	n;
-
-	n = stack->x;
-	while (stack->next != NULL)
-	{
-		stack->x = stack->next->x;
-		stack = stack->next;
-	}
-	stack->x = n;
+	temp = *stackA;
+	*stackA = (*stackA)->next;
+	temp->next = *stackB;
+	*stackB = temp;
+	(*stackB)->next = NULL;
 }
 
-void	rrotate(stk *stack)
+void rotate(stk **stack)
 {
-	stk *head;
-	int	n;
+	stk *tail;
 
-	head = stack;
-	n = stack->x;
-	while (stack->next != NULL)
+    if (*stack == NULL)
+        return ;
+	tail = *stack;
+    while (tail->next != NULL)
+        tail = tail->next;
+	tail->next = *stack;
+    *stack = (*stack)->next;
+    tail->next->next = NULL;
+}
+
+void	rrotate(stk **stack)
+{
+	stk *temp;
+	stk *head;
+
+	head = NULL;
+	temp = *stack;
+	while (temp->next != NULL)
 	{
-		n = stack->next->x;
-		stack->next->x = n;
-		stack = stack->next;
+		head = temp;
+		temp = temp->next;
 	}
-	stack->x = n;
+	temp->next = *stack;
+	*stack = head->next;
+//	head->next = NULL;
 }
 
 void	print_list(stk *list)
@@ -148,7 +137,7 @@ void sort_tree(stk *stackA)
 	{
 		if ((stackA->x > stackA->next->x) && (stackA->x > stackA->next->next->x))
 		{
-			rotate(stackA);
+			rotate(&stackA);
 			write(1, "ra\n", 3);
 		}
 		if ((stackA->x > stackA->next->x) || (stackA->next->x > stackA->next->next->x))
@@ -239,12 +228,20 @@ int	main(int argc, char **argv)
 
 	stackA = head;
 //	sort_tree(stackA);
-	rotate(stackA);
+//	rotate(&stackA);
+//	rrotate(&stackA);
 //	swap(stackA);
+	ft_printf("\nstack A: \n");
 	print_list(stackA);
+	push(&stackA, &stackB);
+	push(&stackA, &stackB);
+	ft_printf("\nstack A depois: \n");
+	print_list(stackA);
+	ft_printf("\nstack B: \n");
+	print_list(stackB);
 	ft_printf("\n");
 //	print_list(stackB);
 	free_list(stackA);
-	free_list(stackB);
+//	free_list(stackB);
 	return (0);
 }
