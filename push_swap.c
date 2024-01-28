@@ -81,6 +81,8 @@ void	rrotate(stk **stack)
 
 void	print_list(stk *list)
 {
+	if (list == NULL)
+		return ;
 	while (list)
 	{
 		ft_printf("%d", list->x);
@@ -167,6 +169,18 @@ void sort_five(stk *stackA, stk *stackB)
 }
 */
 
+int	check_max_and_min(char **numbrs, int fix)
+{
+	while(numbrs[fix])
+	{
+		ft_printf("%s\n", numbrs[fix]);
+		if (ft_atoi(numbrs[fix]) < INT_MIN || ft_atoi(numbrs[fix]) > INT_MAX)
+			return (1);
+		fix++;
+	}
+	return (0);
+}
+
 int	check_args(char **numbrs, int i)
 {
 	int fix;
@@ -200,6 +214,11 @@ int	check_args(char **numbrs, int i)
 		ft_printf("Existe valores iguais.");
 		return (0);
 	}
+	if (check_max_and_min(numbrs, fix))
+	{
+		ft_printf("Número maior que o maximo inteiro o menor que o minimo inteiro.");
+		return (0);
+	}
 	return (1);
 }
 int	main(int argc, char **argv)
@@ -210,6 +229,8 @@ int	main(int argc, char **argv)
 	stk *head;
 
 	i = 1;
+	if (argc == 1)
+		return (0);
 	if (argc == 2)
 	{
 		argv = ft_split((const char *)argv[1], ' ');
@@ -218,13 +239,13 @@ int	main(int argc, char **argv)
 	if (!check_args(argv, i))
 		return (0);
 	stackA = malloc(sizeof(stk));
+	if (!stackA)
+		exit(1);
 	stackA->next = NULL;
 	head = stackA;
 	stackB = malloc(sizeof(stk));
 	stackB = NULL;
 	ft_printf("\n");
-	if (!stackA)
-		exit(1);
 	while (argv[i])
 	{
 		stackA->x = ft_atoi(argv[i]);
@@ -237,7 +258,6 @@ int	main(int argc, char **argv)
 		stackA = stackA->next;
 		i++;
 	}
-
 	stackA = head;
 //	sort_tree(stackA);
 //	rotate(&stackA);
@@ -248,6 +268,7 @@ int	main(int argc, char **argv)
 	push(&stackA, &stackB);
 	push(&stackA, &stackB);
 	push(&stackA, &stackB);
+//	push(&stackA, &stackB);
 	ft_printf("\nstack A depois: \n");
 	print_list(stackA);
 	ft_printf("\nstack B: \n");
@@ -255,6 +276,6 @@ int	main(int argc, char **argv)
 	ft_printf("\n");
 //	print_list(stackB);
 	free_list(stackA);
-//	free_list(stackB);
+	free_list(stackB);
 	return (0);
 }
