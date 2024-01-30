@@ -12,15 +12,15 @@
 
 #include "./includes/push_swap.h"
 
-void	swap(stk *stack)
+void	swap(stk **stack)
 {
 	stk    *head;
 	int    n;
 
-	head = stack;
+	head = (*stack);
 	n = head->x;
-	head->x = stack->next->x;
-	stack->next->x = n;
+	head->x = (*stack)->next->x;
+	(*stack)->next->x = n;
 }
 
 stk *last(stk *node)
@@ -36,7 +36,7 @@ void	push(stk **stackA, stk **stackB)
 {
 	stk *temp;
 
-	if (stackA == NULL)
+	if (*stackA == NULL)
 		return ;
 	temp = *stackA;
 
@@ -65,18 +65,13 @@ void rotate(stk **stack)
 void	rrotate(stk **stack)
 {
 	stk *temp;
-	stk *head;
 
-	head = NULL;
 	temp = *stack;
 	while (temp->next != NULL)
-	{
-		head = temp;
 		temp = temp->next;
-	}
 	temp->next = *stack;
-	*stack = head->next;
-//	head->next = NULL;
+	temp->next->next->next = NULL;
+	*stack = temp;
 }
 
 void	print_list(stk *list)
@@ -90,6 +85,23 @@ void	print_list(stk *list)
 		if (list)
 			ft_printf(" ");
 	}
+}
+
+int list_size(stk *list)
+{
+	int count;
+	stk *temp;
+
+	temp = list;
+/*	if (temp == NULL)
+		return (0);*/
+	count = 0;
+	while (temp != NULL)
+	{
+		temp = temp->next;
+		count++;
+	}
+	return (count);
 }
 
 void	free_list(stk *list)
@@ -142,25 +154,19 @@ void sort_two(stk *stackA)
 	stackA->x = nb;
 }
 
-void sort_tree(stk *stackA)
+void sort_tree(stk **stackA)
 {
-	int i;
 
-	i = 0;
-	while (i < 2)
-	{
-		if ((stackA->x > stackA->next->x) && (stackA->x > stackA->next->next->x))
-		{
-			rotate(&stackA);
-			write(1, "ra\n", 3);
-		}
-		if ((stackA->x > stackA->next->x) || (stackA->next->x > stackA->next->next->x))
+		if (((*stackA)->x > (*stackA)->next->x) || ((*stackA)->next->x > (*stackA)->next->next->x))
 		{
 			swap(stackA);
 			write(1, "sa\n", 3);
 		}
-		i++;
-	}
+		if (((*stackA)->x > (*stackA)->next->x) && ((*stackA)->x > (*stackA)->next->next->x))
+		{
+			rrotate(stackA);
+			write(1, "rra\n", 4);
+		}
 }
 /*
 void sort_five(stk *stackA, stk *stackB)
@@ -171,10 +177,11 @@ void sort_five(stk *stackA, stk *stackB)
 
 int	check_max_and_min(char **numbrs, int fix)
 {
-	while(numbrs[fix])
+	long nb;//
+	while (numbrs[fix])
 	{
-		ft_printf("%s\n", numbrs[fix]);
-		if (ft_atoi(numbrs[fix]) < INT_MIN || ft_atoi(numbrs[fix]) > INT_MAX)
+		nb = ft_atoi(numbrs[fix]);
+		if (nb < INT_MIN || nb > INT_MAX)
 			return (1);
 		fix++;
 	}
@@ -221,6 +228,12 @@ int	check_args(char **numbrs, int i)
 	}
 	return (1);
 }
+/*
+void	ft_sort_stake(stk **stackA, stk **stackB)
+{
+	
+}
+*/
 int	main(int argc, char **argv)
 {	
 	int	i;
@@ -259,22 +272,20 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	stackA = head;
-//	sort_tree(stackA);
-//	rotate(&stackA);
-//	rrotate(&stackA);
-//	swap(stackA);
+
+
+	if (list_size(stackA) == 2)
+	{
+		swap(&stackA);
+		write (1, "sa", 2);
+	}
+	if (list_size(stackA) == 3)
+		sort_tree(&stackA);
+
+
 	ft_printf("\nstack A: \n");
 	print_list(stackA);
-	push(&stackA, &stackB);
-	push(&stackA, &stackB);
-	push(&stackA, &stackB);
-//	push(&stackA, &stackB);
-	ft_printf("\nstack A depois: \n");
-	print_list(stackA);
-	ft_printf("\nstack B: \n");
-	print_list(stackB);
-	ft_printf("\n");
-//	print_list(stackB);
+
 	free_list(stackA);
 	free_list(stackB);
 	return (0);

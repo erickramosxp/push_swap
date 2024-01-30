@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	resp;
+	long	resp;
 	int	signal;
 	int	i;
 
