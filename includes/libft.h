@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 void	*ft_calloc(size_t nmemb, size_t size);
-long		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 void	ft_bzero(void *s, size_t n);

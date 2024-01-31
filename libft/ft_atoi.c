@@ -13,8 +13,8 @@
 long	ft_atoi(const char *nptr)
 {
 	long	resp;
-	int	signal;
-	int	i;
+	int		signal;
+	int		i;
 
 	i = 0;
 	resp = 0;

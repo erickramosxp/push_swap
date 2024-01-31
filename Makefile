@@ -13,13 +13,16 @@
 NAME = push_swap
 NAMELIB = push_swap.a
 FLAGS = -Wall -Wextra -Werror
+UTILS = ./src/*.c
 
 all:	$(NAME)
 
 $(NAME):
 	$(MAKE) -C ./libft/ft_printf/
 	$(MAKE) -C ./libft/
-	ar -r ./libft/libft.a ./libft/ft_printf/*.o
+	cc $(FLAGS) -c $(UTILS)
+	mv ./*.o ./src
+	ar -r ./libft/libft.a ./libft/ft_printf/*.o ./src/*.o
 	cp ./libft/libft.a ./
 	mv libft.a $(NAMELIB)
 	cc $(FLAGS) push_swap.c $(NAMELIB) -o push_swap
@@ -27,6 +30,7 @@ $(NAME):
 clean:
 	$(MAKE) clean -C ./libft/ft_printf/
 	$(MAKE) clean -C ./libft/
+	rm ./src/*.o
 
 fclean: clean
 	$(MAKE) fclean -C ./libft/ft_printf/
