@@ -17,15 +17,54 @@ void	ft_sort_stake(t_stk **stack_a, t_stk **stack_b)
 {
 }
 */
+
+void fill_list(t_stk **stack, char **nbs, int fix)
+{
+    t_stk *temp;
+    t_stk *head = NULL;
+    t_stk *prev = NULL;
+
+    while (nbs[fix])
+    {
+        temp = malloc(sizeof(t_stk));
+        if (!temp)
+            exit(1);
+        temp->x = atoi(nbs[fix]);
+        temp->previous = prev;
+        temp->next = NULL;
+        if (prev)
+            prev->next = temp;
+        prev = temp;
+        if (!head)
+            head = temp;
+        fix++;
+    }
+    *stack = head;
+}
+
+void	print_list2(t_stk *list)
+{
+	if (list == NULL)
+		return ;
+	while (list)
+	{
+		ft_printf("%d", list->x);
+		list = list->previous;
+		if (list)
+			ft_printf(" ");
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
 	t_stk	*stack_a;
-	t_stk	*stack_b;
+//	t_stk	*stack_b;
 	t_stk	*head;
 
 	stack_a = NULL;
-	stack_b = NULL;
+//	stack_b = NULL;
+	head = NULL;
 	i = 1;
 	if (argc == 1)
 		return (0);
@@ -36,40 +75,16 @@ int	main(int argc, char **argv)
 	}
 	if (!check_args(argv, i))
 		return (0);
-	stack_a = malloc(sizeof(t_stk));
-	if (!stack_a)
-		exit(1);
-	stack_a->next = NULL;
+	fill_list(&stack_a, argv, i);
 	head = stack_a;
-	stack_b = malloc(sizeof(t_stk));
-	stack_b = NULL;
-	ft_printf("\n");
-	while (argv[i])
-	{
-		stack_a->x = ft_atoi(argv[i]);
-		if (argv[i + 1])
-			stack_a->next = malloc(sizeof(t_stk));
-		else
-			stack_a->next = NULL;
-		if (!stack_a)
-			exit(1);
-		stack_a = stack_a->next;
-		i++;
-	}
 	stack_a = head;
-
-	if (list_size(stack_a) == 2)
-	{
-		swap(&stack_a);
-		write(1, "sa", 2);
-	}
-	if (list_size(stack_a) == 3)
-		sort_tree(&stack_a);
-
 	ft_printf("\nstack A: \n");
 	print_list(stack_a);
 
+	ft_printf("\nstack A rev: \n");
+	print_list2(last(stack_a));
+
 	free_list(stack_a);
-	free_list(stack_b);
+//	free_list(stack_b);
 	return (0);
 }
