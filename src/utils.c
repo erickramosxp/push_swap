@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-t_stk	*last(t_stk *node)
+t_stk	*last_node(t_stk *node)
 {
 	while (node->next != NULL)
 	{

@@ -55,6 +55,19 @@ void	print_list2(t_stk *list)
 	}
 }
 
+void	free_args(char **args)
+{
+	int i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -82,9 +95,12 @@ int	main(int argc, char **argv)
 	print_list(stack_a);
 
 	ft_printf("\nstack A rev: \n");
-	print_list2(last(stack_a));
+	rrotate(&stack_a);
+	print_list2(last_node(stack_a));
 
 	free_list(stack_a);
 //	free_list(stack_b);
+	if (i == 0)
+		free_args(argv);
 	return (0);
 }

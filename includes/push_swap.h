@@ -35,7 +35,7 @@ void				print_list(t_stk *list);
 int					list_size(t_stk *list);
 void				free_list(t_stk *list);
 int					check_sorted(char **numbrs, int i, int fix);
-t_stk				*last(t_stk *node);
+t_stk				*last_node(t_stk *node);
 
 void				sort_two(t_stk *stack_a);
 void				sort_tree(t_stk **stack_a);

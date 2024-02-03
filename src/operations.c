@@ -54,12 +54,15 @@ void	rotate(t_stk **stack)
 
 void	rrotate(t_stk **stack)
 {
+	t_stk	*last;
 	t_stk	*temp;
 
 	temp = *stack;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = *stack;
-	temp->next->next->next = NULL;
-	*stack = temp;
+	last = last_node(temp);
+	last->next = temp;
+	temp->previous = last;
+
+	last->previous->next = NULL;
+	last->previous = NULL;
+	*stack = last;
 }
