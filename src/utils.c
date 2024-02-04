@@ -17,6 +17,8 @@ t_stk	*last_node(t_stk *node)
 	t_stk	*temp;
 
 	temp = node;
+	if (temp == NULL)
+		return (temp);
 	while (temp->next != NULL)
 	{
 		temp = temp->next;

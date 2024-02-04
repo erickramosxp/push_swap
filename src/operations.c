@@ -39,14 +39,14 @@ void	push(t_stk **stack_a, t_stk **stack_b)
 		return ;
 
 	head = *stack_a;
-	temp = *stack_a;
+	temp = head->next;
 
-	temp = temp->next;
-	temp->previous = NULL;
+	if (temp != NULL)
+		temp->previous = NULL;
 
+	head->next = *stack_b;
 	if (*stack_b)
 		(*stack_b)->previous = head;
-	head->next = *stack_b;
 	head->previous = NULL;
 
 	*stack_a = temp;

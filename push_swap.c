@@ -90,7 +90,7 @@ int	main(int argc, char **argv)
 		return (0);
 	fill_list(&stack_a, argv, i);
 //	head = stack_a;
-/*	if (list_size(stack_a) == 2)
+	if (list_size(stack_a) == 2)
 	{
 		swap(&stack_a);
 		ft_printf("sa");
@@ -99,27 +99,12 @@ int	main(int argc, char **argv)
 		sort_tree(&stack_a);
 	else if (list_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
-*/
+
 	ft_printf("\nstack A: \n");
 	print_list(stack_a);
 
 	ft_printf("\nstack B: \n");
 	print_list(stack_b);
-
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-	push(&stack_a, &stack_b);
-
-	ft_printf("\nstack A Apos: \n");
-	print_list(stack_a);
-	ft_printf("\nstack A Reverso: \n");
-	print_list2(stack_a);
-
-	ft_printf("\nstack B Apos: \n");
-	print_list(stack_b);
-	ft_printf("\nstack B Reverso: \n");
-	print_list2(stack_b);
 //	rrotate(&stack_a);
 //	print_list2(last_node(stack_a));
 	ft_printf("\n");
