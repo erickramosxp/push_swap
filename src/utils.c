@@ -14,11 +14,14 @@
 
 t_stk	*last_node(t_stk *node)
 {
-	while (node->next != NULL)
+	t_stk	*temp;
+
+	temp = node;
+	while (temp->next != NULL)
 	{
-		node = node->next;
+		temp = temp->next;
 	}
-	return (node);
+	return (temp);
 }
 
 void	print_list(t_stk *list)
@@ -61,6 +64,20 @@ void	free_list(t_stk *list)
 		list = list->next;
 		free(temp);
 	}
+}
+
+int	check_list_sorted(t_stk *list)
+{
+	t_stk *temp;
+
+	temp = list;
+	while (temp)
+	{
+		if (temp->x > temp->next->x)
+			return (0);
+		temp = temp->next;
+	}
+	return (1);
 }
 
 int	check_sorted(char **numbrs, int i, int fix)

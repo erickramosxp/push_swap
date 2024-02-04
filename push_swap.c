@@ -72,12 +72,12 @@ int	main(int argc, char **argv)
 {
 	int		i;
 	t_stk	*stack_a;
-//	t_stk	*stack_b;
-	t_stk	*head;
+	t_stk	*stack_b;
+//	t_stk	*head;
 
 	stack_a = NULL;
-//	stack_b = NULL;
-	head = NULL;
+	stack_b = NULL;
+//	head = NULL;
 	i = 1;
 	if (argc == 1)
 		return (0);
@@ -89,15 +89,40 @@ int	main(int argc, char **argv)
 	if (!check_args(argv, i))
 		return (0);
 	fill_list(&stack_a, argv, i);
-	head = stack_a;
-	stack_a = head;
+//	head = stack_a;
+/*	if (list_size(stack_a) == 2)
+	{
+		swap(&stack_a);
+		ft_printf("sa");
+	}
+	else if (list_size(stack_a) == 3)
+		sort_tree(&stack_a);
+	else if (list_size(stack_a) == 5)
+		sort_five(&stack_a, &stack_b);
+*/
 	ft_printf("\nstack A: \n");
 	print_list(stack_a);
 
-	ft_printf("\nstack A rev: \n");
-	rrotate(&stack_a);
-	print_list2(last_node(stack_a));
+	ft_printf("\nstack B: \n");
+	print_list(stack_b);
 
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+	push(&stack_a, &stack_b);
+
+	ft_printf("\nstack A Apos: \n");
+	print_list(stack_a);
+	ft_printf("\nstack A Reverso: \n");
+	print_list2(stack_a);
+
+	ft_printf("\nstack B Apos: \n");
+	print_list(stack_b);
+	ft_printf("\nstack B Reverso: \n");
+	print_list2(stack_b);
+//	rrotate(&stack_a);
+//	print_list2(last_node(stack_a));
+	ft_printf("\n");
 	free_list(stack_a);
 //	free_list(stack_b);
 	if (i == 0)

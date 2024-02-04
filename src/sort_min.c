@@ -43,8 +43,21 @@ void	sort_tree(t_stk **stack_a)
 	}
 }
 
-/*
-void	sort_five(t_stk *stack_a, t_stk *stack_b)
+
+void	sort_five(t_stk **stack_a, t_stk **stack_b)
 {
+
+	while (!check_list_sorted(*stack_a))
+	{
+		push(stack_a, stack_b);
+		push(stack_a, stack_b);
+		ft_printf("pb\n");
+		ft_printf("pb\n");
+		sort_tree(stack_a);
+		push(stack_b, stack_a);
+		ft_printf("pa\n");
+		rotate(stack_a);
+		ft_printf("ra\n");
+		push(stack_b, stack_a);
+	}
 }
-*/

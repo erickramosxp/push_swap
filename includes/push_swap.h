@@ -30,6 +30,7 @@ typedef struct s_stack
 int					check_repeat(char **numbrs, int i);
 int					check_max_and_min(char **numbrs, int fix);
 int					check_args(char **numbrs, int i);
+int					check_list_sorted(t_stk *list);
 
 void				print_list(t_stk *list);
 int					list_size(t_stk *list);
@@ -39,7 +40,7 @@ t_stk				*last_node(t_stk *node);
 
 void				sort_two(t_stk *stack_a);
 void				sort_tree(t_stk **stack_a);
-// void	sort_five(t_t_stk *stack_a, t_t_stk *stack_b);
+void				sort_five(t_stk **stack_a, t_stk **stack_b);
 
 void				swap(t_stk **stack);
 void				push(t_stk **stack_a, t_stk **stack_b);
