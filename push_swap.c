@@ -13,7 +13,13 @@
 #include "./includes/push_swap.h"
 
 /*
-void	ft_sort_stake(t_stk **stack_a, t_stk **stack_b)
+void	ft_sort_stake(t_stk **stack_a, t_stk **stack
+		i++;
+	}
+	free(args);
+}
+
+int	main(int argc, char **argv)_b)
 {
 }
 */
@@ -30,6 +36,7 @@ void fill_list(t_stk **stack, char **nbs, int fix)
         if (!temp)
             exit(1);
         temp->x = atoi(nbs[fix]);
+		temp->index = -1;
         temp->previous = prev;
         temp->next = NULL;
         if (prev)
@@ -90,7 +97,7 @@ int	main(int argc, char **argv)
 		return (0);
 	fill_list(&stack_a, argv, i);
 //	head = stack_a;
-	if (list_size(stack_a) == 2)
+/*	if (list_size(stack_a) == 2)
 	{
 		swap(&stack_a);
 		ft_printf("sa");
@@ -99,7 +106,7 @@ int	main(int argc, char **argv)
 		sort_tree(&stack_a);
 	else if (list_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
-
+*/
 	ft_printf("\nstack A: \n");
 	print_list(stack_a);
 
