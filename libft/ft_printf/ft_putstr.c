@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printu.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
+/*   By: erramos <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 22:21:50 by erramos           #+#    #+#             */
-/*   Updated: 2023/11/12 17:46:18 by erramos          ###   ########.fr       */
+/*   Created: 2023/10/27 18:08:22 by erramos           #+#    #+#             */
+/*   Updated: 2023/11/14 14:49:45 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	len_u(unsigned int nb)
-{
-	int	i;
-
-	i = 0;
-	while (nb != 0)
-	{
-		nb = nb / 10;
-		i++;
-	}
-	return (i);
-}
-
-int	ft_printu(unsigned int nb)
+int	ft_putstr(char *s)
 {
 	int	len;
 
-	if (nb == 0)
+	len = 0;
+	if (!s)
 	{
-		write(1, "0", 1);
-		return (1);
+		write(1, "(null)", 6);
+		return (6);
 	}
-	len = len_u(nb);
-	if (nb > 9)
+	while (s[len])
 	{
-		ft_printu(nb / 10);
-		ft_printu(nb % 10);
+		write(1, &s[len], 1);
+		len++;
 	}
-	else
-		ft_putchar(nb + '0');
 	return (len);
 }

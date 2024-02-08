@@ -38,8 +38,3 @@ int	ft_printhex(const char c, unsigned int nb)
 		ft_putchar(nb + '0');
 	return (len);
 }
-/*
-int	main(void)
-{
-	ft_printhex('X', 2347);
-}*/

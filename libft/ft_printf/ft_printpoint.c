@@ -58,13 +58,3 @@ int	ft_printpoint(unsigned long long nb)
 	len += ft_printhexp(nb);
 	return (len);
 }
-/*
-int	main(void)
-{
-	void	*a;
-	char	*b;
-
-	a = (void)&b;
-
-	ft_printpoint(a);
-}*/

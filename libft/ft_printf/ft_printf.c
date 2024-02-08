@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*#include <stdio.h>*/
 
 int	check_id(char id, va_list args)
 {

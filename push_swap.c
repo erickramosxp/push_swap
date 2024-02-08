@@ -152,7 +152,7 @@ void fill_list(t_stk **stack, char **nbs, int fix)
         temp = malloc(sizeof(t_stk));
         if (!temp)
             exit(1);
-        temp->x = atoi(nbs[fix]);
+        temp->x = ft_atoi(nbs[fix]);
 		temp->index = -1;
         temp->previous = prev;
         temp->next = NULL;
@@ -165,7 +165,6 @@ void fill_list(t_stk **stack, char **nbs, int fix)
     }
 	index_list(head);
     *stack = head;
-
 }
 /*
 void	print_list2(t_stk *list)
@@ -228,7 +227,7 @@ int	main(int argc, char **argv)
 	else if (list_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
 
-	ft_printf("\nstack A: \n");
+	ft_printf("stack A: \n");
 	print_list(stack_a);
 
 	ft_printf("\nstack B: \n");

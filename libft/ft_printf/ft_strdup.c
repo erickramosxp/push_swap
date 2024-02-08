@@ -1,46 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printu.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 22:21:50 by erramos           #+#    #+#             */
-/*   Updated: 2023/11/12 17:46:18 by erramos          ###   ########.fr       */
+/*   Created: 2023/10/21 15:37:39 by erramos           #+#    #+#             */
+/*   Updated: 2023/11/14 16:20:09 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	len_u(unsigned int nb)
+static char	*ft_strcpy(char *dest, const char *src)
 {
 	int	i;
 
 	i = 0;
-	while (nb != 0)
+	while (src[i] != '\0')
 	{
-		nb = nb / 10;
+		dest[i] = src[i];
 		i++;
 	}
-	return (i);
+	dest[i] = '\0';
+	return (dest);
 }
 
-int	ft_printu(unsigned int nb)
+char	*ft_strdup(const char *s)
 {
-	int	len;
+	char	*copy;
 
-	if (nb == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
-	len = len_u(nb);
-	if (nb > 9)
-	{
-		ft_printu(nb / 10);
-		ft_printu(nb % 10);
-	}
-	else
-		ft_putchar(nb + '0');
-	return (len);
+	copy = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!copy)
+		return (NULL);
+	ft_strcpy(copy, s);
+	return (copy);
 }

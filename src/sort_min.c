@@ -12,15 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-void	sort_two(t_stk *stack_a)
-{
-	int	nb;
-
-	nb = stack_a->next->x;
-	stack_a->next->x = stack_a->x;
-	stack_a->x = nb;
-}
-
 void	sort_tree(t_stk **stack_a)
 {
 	if (((*stack_a)->next->x > (*stack_a)->x)

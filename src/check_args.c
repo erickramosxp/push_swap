@@ -34,7 +34,7 @@ int	check_repeat(char **numbrs, int i)
 
 int	check_max_and_min(char **numbrs, int fix)
 {
-	long	nb;
+	long long	nb;
 	while (numbrs[fix])
 	{
 		nb = ft_atoi(numbrs[fix]);
