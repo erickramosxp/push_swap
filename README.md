@@ -1,1 +1,1 @@
-<h1 align="center">- Simples algoritimo de ordenação -</h1>
+<h1 align="center">- Simples algoritmo de ordenação -</h1>
