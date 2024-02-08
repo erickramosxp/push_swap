@@ -32,7 +32,6 @@ void	print_list(t_stk *list)
 		return ;
 	while (list)
 	{
-		ft_printf("%d", list->x);
 		list = list->next;
 		if (list)
 			ft_printf(" ");

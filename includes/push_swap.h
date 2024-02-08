@@ -48,4 +48,16 @@ void				push(t_stk **stack_a, t_stk **stack_b);
 void				rotate(t_stk **stack);
 void				rrotate(t_stk **stack);
 
+void				rrr(t_stk **stack_a, t_stk **stack_b);
+void				rrb(t_stk **stack_b);
+void				rra(t_stk **stack_a);
+void				rr(t_stk **stack_a, t_stk **stack_b);
+void				rb(t_stk **stack_b);
+void				ra(t_stk **stack_a);
+void				pb(t_stk **stack_a, t_stk **stack_b);
+void				pa(t_stk **stack_a, t_stk **stack_b);
+void				ss(t_stk **stack_a, t_stk **stack_b);
+void				sb(t_stk **stack);
+void				sa(t_stk **stack);
+
 #endif

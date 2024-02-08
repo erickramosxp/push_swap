@@ -25,7 +25,7 @@ $(NAME):
 	ar -r ./libft/libft.a ./libft/ft_printf/*.o ./src/*.o
 	cp ./libft/libft.a ./
 	mv libft.a $(NAMELIB)
-	cc $(FLAGS) push_swap.c $(NAMELIB) -o push_swap
+	cc -g $(FLAGS) push_swap.c $(NAMELIB) -o push_swap
 
 clean:
 	$(MAKE) clean -C ./libft/ft_printf/
