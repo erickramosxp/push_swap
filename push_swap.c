@@ -227,14 +227,14 @@ int	main(int argc, char **argv)
 	else if (list_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
 
-	ft_printf("stack A: \n");
-	print_list(stack_a);
+//	ft_printf("stack A: \n");
+//	print_list(stack_a);
 
-	ft_printf("\nstack B: \n");
-	print_list(stack_b);
+//	ft_printf("\nstack B: \n");
+//	print_list(stack_b);
 //	rrotate(&stack_a);
 //	print_list2(last_node(stack_a));
-	ft_printf("\n");
+//	ft_printf("\n");
 	free_list(stack_a);
 //	free_list(stack_b);
 	if (i == 0)
