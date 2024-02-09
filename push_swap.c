@@ -24,6 +24,60 @@ int	main(int argc, char **argv)_b)
 }
 */
 
+int		index_max(t_stk *stake)
+{
+	t_stk *temp;
+	int max;
+
+	max = -1;
+	temp = stake;
+	while (temp)
+	{
+		if (max < temp->index)
+			max = temp->index;
+		temp = temp->next;
+	}
+	return (max);
+}
+
+int		count_max_of_bits(int nb)
+{
+	int		count;
+
+	count = 0;
+	while (nb > 0)
+	{
+		count++;
+		nb = nb >> 1;
+	}
+	return (count);
+}
+
+void	radix_sort(t_stk **stack_a, t_stk **stack_b)
+{
+	int		max_bits;
+	int		i;
+	int		size_list;
+
+	i = 0;
+	max_bits = count_max_of_bits(index_max(*stack_a));
+	while (i < max_bits)
+	{
+		size_list = list_size(*stack_a);
+		while (size_list)
+		{
+			if ((((*stack_a)->index >> i) & 1) == 0)
+				pb(stack_a, stack_b);
+			else
+				ra(stack_a);
+			size_list--;
+		}
+		while (*stack_b != NULL)
+			pa(stack_b, stack_a);
+		i++;
+	}
+}
+
 t_stk	*small_node(t_stk *stack)
 {
 	t_stk	*temp;
@@ -226,10 +280,12 @@ int	main(int argc, char **argv)
 		sort_four(&stack_a, &stack_b);
 	else if (list_size(stack_a) == 5)
 		sort_five(&stack_a, &stack_b);
+	else
+		radix_sort(&stack_a, &stack_b);
 
 //	ft_printf("stack A: \n");
 //	print_list(stack_a);
-
+//	ft_printf("\n");
 //	ft_printf("\nstack B: \n");
 //	print_list(stack_b);
 //	rrotate(&stack_a);
