@@ -12,6 +12,68 @@
 
 #include "../includes/push_swap.h"
 
+t_stk	*small_node(t_stk *stack)
+{
+	t_stk	*temp;
+	t_stk	*n_small;
+	int		small;
+
+	temp = stack;
+	small = list_size(stack);
+	while(temp)
+	{
+		if (small > temp->index)
+		{
+			n_small = temp;
+			small = temp->index;
+		}
+		temp = temp->next;
+	}
+	return (n_small);
+}
+
+int		index_max(t_stk *stake)
+{
+	t_stk *temp;
+	int max;
+
+	max = -1;
+	temp = stake;
+	while (temp)
+	{
+		if (max < temp->index)
+			max = temp->index;
+		temp = temp->next;
+	}
+	return (max);
+}
+
+int		count_max_of_bits(int nb)
+{
+	int		count;
+
+	count = 0;
+	while (nb > 0)
+	{
+		count++;
+		nb = nb >> 1;
+	}
+	return (count);
+}
+
+void	free_args(char **args)
+{
+	int i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
 t_stk	*last_node(t_stk *node)
 {
 	t_stk	*temp;
@@ -91,4 +153,58 @@ int	check_sorted(char **numbrs, int i, int fix)
 		i--;
 	}
 	return (1);
+}
+
+void	index_list(t_stk *stack)
+{
+	t_stk	*temp;
+	t_stk	*small;
+	int		i;
+	int		size_list;
+	int		nb;
+
+	i = 0;
+	size_list = list_size(stack);
+	while (i < size_list)
+	{
+		nb = INT_MAX;
+		temp = stack;
+		while (temp)
+		{
+			if (nb >= temp->x && temp->index == -1)
+			{
+				small = temp;
+				nb = temp->x;
+			}
+			temp = temp->next;
+		}
+		small->index = i;
+		i++;
+	}
+}
+
+void fill_list(t_stk **stack, char **nbs, int fix)
+{
+    t_stk *temp;
+    t_stk *head = NULL;
+    t_stk *prev = NULL;
+
+    while (nbs[fix])
+    {
+        temp = malloc(sizeof(t_stk));
+        if (!temp)
+            exit(1);
+        temp->x = ft_atoi(nbs[fix]);
+		temp->index = -1;
+        temp->previous = prev;
+        temp->next = NULL;
+        if (prev)
+            prev->next = temp;
+        prev = temp;
+        if (!head)
+            head = temp;
+        fix++;
+    }
+	index_list(head);
+    *stack = head;
 }

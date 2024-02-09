@@ -37,11 +37,18 @@ void				print_list(t_stk *list);
 int					list_size(t_stk *list);
 void				free_list(t_stk *list);
 int					check_sorted(char **numbrs, int i, int fix);
+void				fill_list(t_stk **stack, char **nbs, int fix);
+void				index_list(t_stk *stack);
+void				free_args(char **args);
 t_stk				*last_node(t_stk *node);
+int					count_max_of_bits(int nb);
+int					index_max(t_stk *stake);
+t_stk				*small_node(t_stk *stack);
 
-void				sort_two(t_stk *stack_a);
 void				sort_tree(t_stk **stack_a);
+void				sort_four(t_stk **stack_a, t_stk **stack_b);
 void				sort_five(t_stk **stack_a, t_stk **stack_b);
+void				radix_sort(t_stk **stack_a, t_stk **stack_b);
 
 void				swap(t_stk **stack);
 void				push(t_stk **stack_a, t_stk **stack_b);

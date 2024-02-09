@@ -13,213 +13,103 @@
 #include "./includes/push_swap.h"
 
 /*
-void	ft_sort_stake(t_stk **stack_a, t_stk **stack
-		i++;
-	}
-	free(args);
-}
-
-int	main(int argc, char **argv)_b)
-{
-}
-*/
-
-int		index_max(t_stk *stake)
-{
-	t_stk *temp;
-	int max;
-
-	max = -1;
-	temp = stake;
-	while (temp)
-	{
-		if (max < temp->index)
-			max = temp->index;
-		temp = temp->next;
-	}
-	return (max);
-}
-
-int		count_max_of_bits(int nb)
-{
-	int		count;
-
-	count = 0;
-	while (nb > 0)
-	{
-		count++;
-		nb = nb >> 1;
-	}
-	return (count);
-}
-
-void	radix_sort(t_stk **stack_a, t_stk **stack_b)
-{
-	int		max_bits;
-	int		i;
-	int		size_list;
-
-	i = 0;
-	max_bits = count_max_of_bits(index_max(*stack_a));
-	while (i < max_bits)
-	{
-		size_list = list_size(*stack_a);
-		while (size_list)
-		{
-			if ((((*stack_a)->index >> i) & 1) == 0)
-				pb(stack_a, stack_b);
-			else
-				ra(stack_a);
-			size_list--;
-		}
-		while (*stack_b != NULL)
-			pa(stack_b, stack_a);
-		i++;
-	}
-}
-
-t_stk	*small_node(t_stk *stack)
+t_stk	*small_node_in_20(t_stk *stack)
 {
 	t_stk	*temp;
 	t_stk	*n_small;
 	int		small;
+	int		count;
 
 	temp = stack;
+	count = 0;
 	small = list_size(stack);
-	while(temp)
+	while(temp != NULL && count < 20)
 	{
 		if (small > temp->index)
 		{
 			n_small = temp;
 			small = temp->index;
 		}
+		count++;
 		temp = temp->next;
 	}
 	return (n_small);
 }
 
-void		sort_four(t_stk **stack_a, t_stk **stack_b)
+t_stk	*big_node(t_stk *stack)
 {
-	int		param;
-	int		size_list;
-
-	int		count;
 	t_stk	*temp;
-	t_stk	*n_small;
+	t_stk	*n_big;
+	int		big;
 
-	temp = *stack_a;
-	size_list = list_size(*stack_a);
-	param = size_list / 2;
-	count = 0;
-	n_small = small_node(*stack_a);
-	while (temp != n_small)
+	temp = stack;
+	big = 0;
+	while(temp)
 	{
-		count++;
+		if (big < temp->index)
+		{
+			n_big = temp;
+			big = temp->index;
+		}
 		temp = temp->next;
 	}
-	if (count < param)
-	{
-		while (*stack_a != n_small)
-			ra(stack_a);
-	}
-	else
-	{
-		while (*stack_a != n_small)
-			rra(stack_a);
-	}
-	pb(stack_a, stack_b);
-	sort_tree(stack_a);
-	pa(stack_b, stack_a);
+	return (n_big);
 }
 
-void		sort_five(t_stk **stack_a, t_stk **stack_b)
+void		sort_100(t_stk **stack_a, t_stk **stack_b)
 {
 	int		param;
-	int		size_list;
-
-	int		count;
-	t_stk	*temp;
-	t_stk	*n_small;
-
-	temp = *stack_a;
-	size_list = list_size(*stack_a);
-	param = size_list / 2;
-	count = 0;
-	n_small = small_node(*stack_a);
-	while (temp != n_small)
-	{
-		count++;
-		temp = temp->next;
-	}
-	if (count < param)
-	{
-		while (*stack_a != n_small)
-			ra(stack_a);
-	}
-	else
-	{
-		while (*stack_a != n_small)
-			rra(stack_a);
-	}
-	pb(stack_a, stack_b);
-	sort_four(stack_a, stack_b);
-	pa(stack_b, stack_a);
-}
-
-
-void	index_list(t_stk *stack)
-{
-	t_stk	*temp;
-	t_stk	*small;
 	int		i;
-	int		size_list;
-	int		nb;
+	int		j;
+	t_stk	*temp;
+	t_stk	*big;
+	t_stk	*small;
 
 	i = 0;
-	size_list = list_size(stack);
-	while (i < size_list)
+	temp = *stack_a;
+	while (i < list_size(*stack_a) && stack_a != NULL)
 	{
-		nb = INT_MAX;
-		temp = stack;
-		while (temp)
+		small = small_node_in_20(*stack_a);
+		while (*stack_a != NULL && *stack_a != small)
 		{
-			if (nb >= temp->x && temp->index == -1)
-			{
-				small = temp;
-				nb = temp->x;
-			}
+			ft_printf("|||||| COMEÇO |||||||");
+			print_list(*stack_a);
+				ra(stack_a);
+			if (*stack_a == small)
+				pb(stack_a, stack_b);
+		}
+		i++;
+	}
+	i = 0;
+	print_list(*stack_b);
+	while (i < 100 && stack_b != NULL)
+	{
+		big = big_node(*stack_b);
+		param = list_size(*stack_b);
+		temp = *stack_b;
+		j = 0;
+		ft_printf("%d", big->x);
+		while (temp != big)
+		{
+			j++;
 			temp = temp->next;
 		}
-		small->index = i;
+		if (j < param)
+		{
+			while (*stack_b != big)
+				ra(stack_b);
+		}
+		else
+		{
+			while (*stack_b != big)
+				rra(stack_a);
+		}
+		pa(stack_a, stack_b);
 		i++;
 	}
 }
+*/
 
-void fill_list(t_stk **stack, char **nbs, int fix)
-{
-    t_stk *temp;
-    t_stk *head = NULL;
-    t_stk *prev = NULL;
-
-    while (nbs[fix])
-    {
-        temp = malloc(sizeof(t_stk));
-        if (!temp)
-            exit(1);
-        temp->x = ft_atoi(nbs[fix]);
-		temp->index = -1;
-        temp->previous = prev;
-        temp->next = NULL;
-        if (prev)
-            prev->next = temp;
-        prev = temp;
-        if (!head)
-            head = temp;
-        fix++;
-    }
-	index_list(head);
-    *stack = head;
-}
 /*
 void	print_list2(t_stk *list)
 {
@@ -234,25 +124,12 @@ void	print_list2(t_stk *list)
 	}
 }
 */
-void	free_args(char **args)
-{
-	int i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
-}
 
 int	main(int argc, char **argv)
 {
 	int		i;
 	t_stk	*stack_a;
 	t_stk	*stack_b;
-//	t_stk	*temp;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -271,7 +148,6 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	fill_list(&stack_a, argv, i);
-//	head = stack_a;
 	if (list_size(stack_a) == 2)
 		sa(&stack_a);
 	else if (list_size(stack_a) == 3)
@@ -282,17 +158,7 @@ int	main(int argc, char **argv)
 		sort_five(&stack_a, &stack_b);
 	else
 		radix_sort(&stack_a, &stack_b);
-
-//	ft_printf("stack A: \n");
-//	print_list(stack_a);
-//	ft_printf("\n");
-//	ft_printf("\nstack B: \n");
-//	print_list(stack_b);
-//	rrotate(&stack_a);
-//	print_list2(last_node(stack_a));
-//	ft_printf("\n");
 	free_list(stack_a);
-//	free_list(stack_b);
 	if (i == 0)
 		free_args(argv);
 	return (0);
