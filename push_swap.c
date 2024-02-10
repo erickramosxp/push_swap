@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: erramos <erramos@student.42.rio>           +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2024/01/17 15:44:28 by erramos           #+#    #+#             */
 /*   Updated: 2024/02/06 19:09:03 by erramos          ###   ########.fr       */
 /*                                                                            */
@@ -56,7 +59,7 @@ t_stk	*big_node(t_stk *stack)
 	return (n_big);
 }
 
-void		sort_100(t_stk **stack_a, t_stk **stack_b)
+void	sort_100(t_stk **stack_a, t_stk **stack_b)
 {
 	int		param;
 	int		i;
@@ -125,6 +128,20 @@ void	print_list2(t_stk *list)
 }
 */
 
+void	sort_list(t_stk **stack_a, t_stk **stack_b)
+{
+	if (list_size(*stack_a) == 2)
+		sa(stack_a);
+	else if (list_size(*stack_a) == 3)
+		sort_tree(stack_a);
+	else if (list_size(*stack_a) == 4)
+		sort_four(stack_a, stack_b);
+	else if (list_size(*stack_a) == 5)
+		sort_five(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
+}
+
 int	main(int argc, char **argv)
 {
 	int		i;
@@ -147,19 +164,9 @@ int	main(int argc, char **argv)
 			free_args(argv);
 		return (0);
 	}
-	fill_list(&stack_a, argv, i);
-	if (list_size(stack_a) == 2)
-		sa(&stack_a);
-	else if (list_size(stack_a) == 3)
-		sort_tree(&stack_a);
-	else if (list_size(stack_a) == 4)
-		sort_four(&stack_a, &stack_b);
-	else if (list_size(stack_a) == 5)
-		sort_five(&stack_a, &stack_b);
-	else
-		radix_sort(&stack_a, &stack_b);
+	fill_list(&stack_a, argv, i, i);
+	index_list(stack_a);
+	sort_list(&stack_a, &stack_b);
 	free_list(stack_a);
-	if (i == 0)
-		free_args(argv);
 	return (0);
 }

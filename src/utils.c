@@ -2,9 +2,12 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: erramos <erramos@student.42.rio>           +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2024/02/02 19:47:27 by erramos           #+#    #+#             */
 /*   Updated: 2024/02/02 19:47:29 by erramos          ###   ########.fr       */
 /*                                                                            */
@@ -20,7 +23,7 @@ t_stk	*small_node(t_stk *stack)
 
 	temp = stack;
 	small = list_size(stack);
-	while(temp)
+	while (temp)
 	{
 		if (small > temp->index)
 		{
@@ -32,10 +35,10 @@ t_stk	*small_node(t_stk *stack)
 	return (n_small);
 }
 
-int		index_max(t_stk *stake)
+int	index_max(t_stk *stake)
 {
-	t_stk *temp;
-	int max;
+	t_stk	*temp;
+	int		max;
 
 	max = -1;
 	temp = stake;
@@ -48,9 +51,9 @@ int		index_max(t_stk *stake)
 	return (max);
 }
 
-int		count_max_of_bits(int nb)
+int	count_max_of_bits(int nb)
 {
-	int		count;
+	int	count;
 
 	count = 0;
 	while (nb > 0)
@@ -63,7 +66,7 @@ int		count_max_of_bits(int nb)
 
 void	free_args(char **args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])
@@ -132,7 +135,7 @@ void	free_list(t_stk *list)
 
 int	check_list_sorted(t_stk *list)
 {
-	t_stk *temp;
+	t_stk	*temp;
 
 	temp = list;
 	while (temp)
@@ -144,13 +147,18 @@ int	check_list_sorted(t_stk *list)
 	return (1);
 }
 
-int	check_sorted(char **numbrs, int i, int fix)
+int	check_sorted(char **numbrs, int i)
 {
-	while (fix < i)
+	int	qtd_arg;
+
+	qtd_arg = 0;
+	while (numbrs[qtd_arg])
+		qtd_arg++;
+	while (i < (qtd_arg - 1))
 	{
-		if (ft_atoi(numbrs[i - 1]) > ft_atoi(numbrs[i]))
+		if (ft_atoi(numbrs[i]) > ft_atoi(numbrs[i + 1]))
 			return (0);
-		i--;
+		i++;
 	}
 	return (1);
 }
@@ -183,28 +191,31 @@ void	index_list(t_stk *stack)
 	}
 }
 
-void fill_list(t_stk **stack, char **nbs, int fix)
+void	fill_list(t_stk **stack, char **nbs, int fix, int split)
 {
-    t_stk *temp;
-    t_stk *head = NULL;
-    t_stk *prev = NULL;
+	t_stk	*temp;
+	t_stk	*head;
+	t_stk	*prev;
 
-    while (nbs[fix])
-    {
-        temp = malloc(sizeof(t_stk));
-        if (!temp)
-            exit(1);
-        temp->x = ft_atoi(nbs[fix]);
+	head = NULL;
+	prev = NULL;
+	while (nbs[fix])
+	{
+		temp = malloc(sizeof(t_stk));
+		if (!temp)
+			exit(1);
+		temp->x = ft_atoi(nbs[fix]);
 		temp->index = -1;
-        temp->previous = prev;
-        temp->next = NULL;
-        if (prev)
-            prev->next = temp;
-        prev = temp;
-        if (!head)
-            head = temp;
-        fix++;
-    }
-	index_list(head);
-    *stack = head;
+		temp->previous = prev;
+		temp->next = NULL;
+		if (prev)
+			prev->next = temp;
+		prev = temp;
+		if (!head)
+			head = temp;
+		fix++;
+	}
+	if (split == 0)
+		free_args(nbs);
+	*stack = head;
 }

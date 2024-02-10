@@ -23,7 +23,6 @@ void	swap(t_stk **stack)
 	second = head->next;
 	head->previous = second;
 	head->next = second->next;
-
 	if (second->next != NULL)
 		second->next->previous = head;
 	second->next = head;
@@ -40,15 +39,12 @@ void	push(t_stk **stack_a, t_stk **stack_b)
 		return ;
 	head = *stack_a;
 	temp = head->next;
-
 	if (temp != NULL)
 		temp->previous = NULL;
-
 	head->next = *stack_b;
 	if (*stack_b)
 		(*stack_b)->previous = head;
 	head->previous = NULL;
-
 	*stack_a = temp;
 	*stack_b = head;
 }
@@ -83,7 +79,6 @@ void	rrotate(t_stk **stack)
 	last = last_node(temp);
 	last->next = temp;
 	temp->previous = last;
-
 	last->previous->next = NULL;
 	last->previous = NULL;
 	*stack = last;

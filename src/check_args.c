@@ -35,6 +35,7 @@ int	check_repeat(char **numbrs, int i)
 int	check_max_and_min(char **numbrs, int fix)
 {
 	long long	nb;
+
 	while (numbrs[fix])
 	{
 		nb = ft_atoi(numbrs[fix]);
@@ -45,12 +46,13 @@ int	check_max_and_min(char **numbrs, int fix)
 	return (0);
 }
 
-int	check_args(char **numbrs, int i)
+int	check_digit(char **numbrs, int fix)
 {
-	int	fix;
+	int	i;
 	int	j;
 
-	fix = i;
+	i = fix;
+	j = 0;
 	while (numbrs[i])
 	{
 		j = 0;
@@ -60,27 +62,33 @@ int	check_args(char **numbrs, int i)
 				j++;
 			if (!ft_isdigit(numbrs[i][j]))
 			{
-				ft_printf("Um dos valores não é um digito.");
-				return (0);
+				ft_printf("Error\n");
+				return (1);
 			}
 			j++;
 		}
 		i++;
 	}
-	i--;
-	if (check_sorted(numbrs, i, fix))
+	return (0);
+}
+
+int	check_args(char **numbrs, int i)
+{
+	if (check_digit(numbrs, i))
+		return (0);
+	if (check_sorted(numbrs, i))
 	{
-		ft_printf("Os valores já estão ordenados");
+		ft_printf("Error\n");
 		return (0);
 	}
-	if (check_repeat(numbrs, fix))
+	if (check_repeat(numbrs, i))
 	{
-		ft_printf("Existe valores iguais.");
+		ft_printf("Error\n");
 		return (0);
 	}
-	if (check_max_and_min(numbrs, fix))
+	if (check_max_and_min(numbrs, i))
 	{
-		ft_printf("Número maior que o maximo inteiro o menor que o minimo inteiro.");
+		ft_printf("Error\n");
 		return (0);
 	}
 	return (1);
