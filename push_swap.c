@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: erramos <erramos@student.42.rio>           +#+  +:+      
+/*   By: erramos <erramos@student.42.rio>           +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2024/01/17 15:44:28 by erramos           #+#    #+#             */
 /*   Updated: 2024/02/06 19:09:03 by erramos          ###   ########.fr       */

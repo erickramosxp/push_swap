@@ -56,7 +56,7 @@ int	check_digit(char **numbrs, int fix)
 	while (numbrs[i])
 	{
 		j = 0;
-		while (numbrs[i][j])
+		while (numbrs[i][j] || j == 0)
 		{
 			if (numbrs[i][j] == '-' || numbrs[i][j] == '+')
 				j++;
