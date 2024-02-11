@@ -12,6 +12,22 @@
 
 #include "../includes/push_swap.h"
 
+int	check_sorted(char **numbrs, int i)
+{
+	int	qtd_arg;
+
+	qtd_arg = 0;
+	while (numbrs[qtd_arg])
+		qtd_arg++;
+	while (i < (qtd_arg - 1))
+	{
+		if (ft_atoi(numbrs[i]) > ft_atoi(numbrs[i + 1]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	check_repeat(char **numbrs, int i)
 {
 	int	nb;

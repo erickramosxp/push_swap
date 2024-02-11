@@ -12,6 +12,19 @@
 
 #include "../includes/push_swap.h"
 
+int	count_max_of_bits(int nb)
+{
+	int	count;
+
+	count = 0;
+	while (nb > 0)
+	{
+		count++;
+		nb = nb >> 1;
+	}
+	return (count);
+}
+
 void	radix_sort(t_stk **stack_a, t_stk **stack_b)
 {
 	int		max_bits;
