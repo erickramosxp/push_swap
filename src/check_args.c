@@ -25,6 +25,7 @@ int	check_sorted(char **numbrs, int i)
 			return (0);
 		i++;
 	}
+	ft_printf("Error\n");
 	return (1);
 }
 
@@ -40,7 +41,10 @@ int	check_repeat(char **numbrs, int i)
 		while (numbrs[j])
 		{
 			if (nb == ft_atoi(numbrs[j]))
+			{
+				ft_printf("Error\n");
 				return (1);
+			}
 			j++;
 		}
 		i++;
@@ -56,7 +60,10 @@ int	check_max_and_min(char **numbrs, int fix)
 	{
 		nb = ft_atoi(numbrs[fix]);
 		if (nb < INT_MIN || nb > INT_MAX)
+		{
+			ft_printf("Error\n");
 			return (1);
+		}
 		fix++;
 	}
 	return (0);
@@ -93,19 +100,10 @@ int	check_args(char **numbrs, int i)
 	if (check_digit(numbrs, i))
 		return (0);
 	if (check_sorted(numbrs, i))
-	{
-		ft_printf("Error\n");
 		return (0);
-	}
 	if (check_repeat(numbrs, i))
-	{
-		ft_printf("Error\n");
 		return (0);
-	}
 	if (check_max_and_min(numbrs, i))
-	{
-		ft_printf("Error\n");
 		return (0);
-	}
 	return (1);
 }

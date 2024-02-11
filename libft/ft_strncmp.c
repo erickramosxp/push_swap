@@ -27,7 +27,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 			return (-1);
 		else if (a[i] > b[i])
 			return (1);
-		else if (a[i] == '\0' || b[i] == '\0')
+		else if (a[i] == '\0')
 			return (0);
 		i++;
 	}
