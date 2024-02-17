@@ -130,6 +130,8 @@ void	print_list2(t_stk *list)
 
 void	sort_list(t_stk **stack_a, t_stk **stack_b)
 {
+	if (check_list_sorted(*stack_a))
+		return ;
 	if (list_size(*stack_a) == 2)
 		sa(stack_a);
 	else if (list_size(*stack_a) == 3)

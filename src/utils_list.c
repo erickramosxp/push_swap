@@ -33,7 +33,7 @@ int	check_list_sorted(t_stk *list)
 	t_stk	*temp;
 
 	temp = list;
-	while (temp)
+	while (temp->next != NULL)
 	{
 		if (temp->x > temp->next->x)
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:47:07 by erramos           #+#    #+#             */
-/*   Updated: 2024/02/02 19:47:10 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/17 17:55:04 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,6 @@ int	check_digit(char **numbrs, int fix)
 int	check_args(char **numbrs, int i)
 {
 	if (check_digit(numbrs, i))
-		return (0);
-	if (check_sorted(numbrs, i))
 		return (0);
 	if (check_repeat(numbrs, i))
 		return (0);
