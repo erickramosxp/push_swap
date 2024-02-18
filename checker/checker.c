@@ -12,7 +12,7 @@ void    execute_move(char *operation, t_stk **stack_a, t_stk **stack_b)
         else if(!ft_strncmp(operation, "ss\n", ft_strlen(operation)))
             ss(stack_a, stack_b);
         else if(!ft_strncmp(operation, "pa\n", ft_strlen(operation)))
-            pa(stack_a, stack_b);
+            pa(stack_b, stack_a);
         else if(!ft_strncmp(operation, "pb\n", ft_strlen(operation)))
             pb(stack_a, stack_b);
         else if(!ft_strncmp(operation, "ra\n", ft_strlen(operation)))
@@ -37,8 +37,6 @@ void    executer_operations(t_stk **stack_a, t_stk **stack_b)
 
     operation = get_next_line(0);
     execute_move(operation, stack_a, stack_b);
-    ft_printf("%s", operation);
-
 }
 
 int main(int argc, char **argv)
@@ -64,7 +62,12 @@ int main(int argc, char **argv)
 		return (0);
 	}
 	fill_list(&stack_a, argv, i, i);
-    executer_operations(&stack_a, &stack_b);
-    print_list(stack_a);
+	executer_operations(&stack_a, &stack_b);
+	print_list(stack_a);
+	ft_printf("\n");
+	if (check_list_sorted(stack_a))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
 	free_list(stack_a);
 }
