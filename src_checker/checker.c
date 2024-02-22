@@ -48,7 +48,16 @@ void	executer_operations(t_stk **stack_a, t_stk **stack_b)
 	operation = get_next_line(0);
 	while (operation)
 	{
-		execute_move(operation, stack_a, stack_b);
+		if (!execute_move(operation, stack_a, stack_b))
+		{
+			free_list(*stack_a);
+			if (*stack_b)
+				free_list(*stack_b);
+			free(operation);
+			ft_printf("Erro\n");
+			exit(1);
+		}
+		free(operation);
 		operation = get_next_line(0);
 	}
 }
@@ -87,4 +96,6 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("KO\n");
 	free_list(stack_a);
+	if (stack_b)
+		free_list(stack_b);
 }
