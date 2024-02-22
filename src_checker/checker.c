@@ -12,47 +12,60 @@
 
 #include "checker.h"
 
-void    execute_move(char *operation, t_stk **stack_a, t_stk **stack_b)
+int	execute_move(char *operation, t_stk **stack_a, t_stk **stack_b)
 {
-    while (operation != NULL)
-    {
-        if(!ft_strncmp(operation, "sa\n", ft_strlen(operation)))
-            sa_checker(stack_a);
-        else if(!ft_strncmp(operation, "sb\n", ft_strlen(operation)))
-            sb_checker(stack_b);
-        else if(!ft_strncmp(operation, "ss\n", ft_strlen(operation)))
-            ss_checker(stack_a, stack_b);
-        else if(!ft_strncmp(operation, "pa\n", ft_strlen(operation)))
-            pa_checker(stack_b, stack_a);
-        else if(!ft_strncmp(operation, "pb\n", ft_strlen(operation)))
-            pb_checker(stack_a, stack_b);
-        else if(!ft_strncmp(operation, "ra\n", ft_strlen(operation)))
-            ra_checker(stack_a);
-        else if(!ft_strncmp(operation, "rb\n", ft_strlen(operation)))
-            rb_checker(stack_b);
-        else if(!ft_strncmp(operation, "rr\n", ft_strlen(operation)))
-            rr_checker(stack_a, stack_b);
-        else if(!ft_strncmp(operation, "rra\n", ft_strlen(operation)))
-            rra_checker(stack_a);
-        else if(!ft_strncmp(operation, "rrb\n", ft_strlen(operation)))
-            rrb_checker(stack_b);
-        else if(!ft_strncmp(operation, "rrr\n", ft_strlen(operation)))
-            rrr_checker(stack_a, stack_b);
-        operation = get_next_line(0);
-    }
+	if (!ft_strncmp(operation, "sa\n", ft_strlen(operation)))
+		sa_checker(stack_a);
+	else if (!ft_strncmp(operation, "sb\n", ft_strlen(operation)))
+		sb_checker(stack_b);
+	else if (!ft_strncmp(operation, "ss\n", ft_strlen(operation)))
+		ss_checker(stack_a, stack_b);
+	else if (!ft_strncmp(operation, "pa\n", ft_strlen(operation)))
+		pa_checker(stack_b, stack_a);
+	else if (!ft_strncmp(operation, "pb\n", ft_strlen(operation)))
+		pb_checker(stack_a, stack_b);
+	else if (!ft_strncmp(operation, "ra\n", ft_strlen(operation)))
+		ra_checker(stack_a);
+	else if (!ft_strncmp(operation, "rb\n", ft_strlen(operation)))
+		rb_checker(stack_b);
+	else if (!ft_strncmp(operation, "rr\n", ft_strlen(operation)))
+		rr_checker(stack_a, stack_b);
+	else if (!ft_strncmp(operation, "rra\n", ft_strlen(operation)))
+		rra_checker(stack_a);
+	else if (!ft_strncmp(operation, "rrb\n", ft_strlen(operation)))
+		rrb_checker(stack_b);
+	else if (!ft_strncmp(operation, "rrr\n", ft_strlen(operation)))
+		rrr_checker(stack_a, stack_b);
+	else
+		return (0);
+	return (1);
 }
 
-void    executer_operations(t_stk **stack_a, t_stk **stack_b)
+void	executer_operations(t_stk **stack_a, t_stk **stack_b)
 {
-    char    *operation;
+	char	*operation;
 
-    operation = get_next_line(0);
-    execute_move(operation, stack_a, stack_b);
+	operation = get_next_line(0);
+	while (operation)
+	{
+		execute_move(operation, stack_a, stack_b);
+		operation = get_next_line(0);
+	}
 }
 
-int main(int argc, char **argv)
+void	verif_args_if_split(char **argv, int i)
 {
-    int      i;
+	if (!check_args(argv, i))
+	{
+		if (i == 0)
+			free_args(argv);
+		exit(1);
+	}
+}
+
+int	main(int argc, char **argv)
+{
+	int		i;
 	t_stk	*stack_a;
 	t_stk	*stack_b;
 
@@ -66,18 +79,12 @@ int main(int argc, char **argv)
 		argv = ft_split((const char *)argv[1], ' ');
 		i = 0;
 	}
-	if (!check_args(argv, i))
-	{
-		if (i == 0)
-			free_args(argv);
-		return (0);
-	}
+	verif_args_if_split(argv, i);
 	fill_list(&stack_a, argv, i, i);
-    executer_operations(&stack_a, &stack_b);
-    print_list(stack_a);
-    if (check_list_sorted(stack_a))
-	    ft_printf("OK\n");
-    else
-	    ft_printf("KO\n");
-    free_list(stack_a);
+	executer_operations(&stack_a, &stack_b);
+	if (check_list_sorted(stack_a))
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	free_list(stack_a);
 }

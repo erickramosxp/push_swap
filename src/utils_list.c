@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: erramos <erramos@student.42.rio>           +#+  +:+      
+/*   By: erramos <erramos@student.42.rio>           +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2024/02/02 19:47:27 by erramos           #+#    #+#             */
 /*   Updated: 2024/02/02 19:47:29 by erramos          ###   ########.fr       */
@@ -54,7 +54,7 @@ void	index_list(t_stk *stack)
 	size_list = list_size(stack);
 	while (i < size_list)
 	{
-		nb = INT_MAX;
+		nb = 2147483647;
 		temp = stack;
 		while (temp)
 		{

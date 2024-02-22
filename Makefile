@@ -25,11 +25,12 @@ SRCS =	check_args.c \
 	utils_list.c
 UTILS = $(addprefix src/, $(SRCS))
 SRCS_CHECKER =	checker.c\
-				utils_commands.c
+				utils_commands_a.c\
+				utils_commands_b.c\
+				utils_commands_both.c
 SRCS_GNL =	get_next_line.c\
 			get_next_line_utils.c
 DIRGNL = $(addprefix get_next_line/, $(SRCS_GNL))
-CHECK = checker
 
 all:	$(NAME)
 
@@ -55,6 +56,6 @@ clean:
 fclean: clean
 	$(MAKE) fclean -C ./libft/ft_printf/
 	$(MAKE) fclean -C ./libft/
-	rm -rf $(addprefix src/, $(NAMELIB)) push_swap
+	rm -rf $(addprefix src/, $(NAMELIB)) push_swap checker
 
 re:	fclean all
