@@ -6,13 +6,13 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 19:12:59 by erramos           #+#    #+#             */
-/*   Updated: 2023/11/28 19:08:59 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:43:18 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen_line(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -24,14 +24,14 @@ size_t	ft_strlen_line(const char *s)
 	return (i);
 }
 
-char	*ft_strdup_line(const char *s)
+char	*ft_strdup(const char *s)
 {
 	char	*s1;
 	char	*s2;
 	char	*pos;
 
 	s1 = (char *)s;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen_line(s) + 1));
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!s2)
 		return (NULL);
 	pos = s2;
@@ -43,7 +43,7 @@ char	*ft_strdup_line(const char *s)
 	return (pos);
 }
 
-char	*ft_strjoin_line(char *s1, char *s2)
+char	*ft_strjoin_gnl(char *s1, char *s2)
 {
 	char	*s;
 	int		i;
@@ -52,7 +52,7 @@ char	*ft_strjoin_line(char *s1, char *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (0);
-	s = (char *)malloc(sizeof(char) * (ft_strlen_line(s1) + ft_strlen_line(s2) + 1));
+	s = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (s == NULL)
 		return (NULL);
 	while (s1[i] != '\0')

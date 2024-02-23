@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:32:11 by erramos           #+#    #+#             */
-/*   Updated: 2023/11/28 19:07:59 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:45:39 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ char	*read_line(int fd, char *rest, int rd)
 			break ;
 		buffer[rd] = '\0';
 		if (!rest)
-			rest = ft_strdup_line("");
-		rest = ft_strjoin_line(rest, buffer);
+			rest = ft_strdup("");
+		rest = ft_strjoin_gnl(rest, buffer);
 		if (check_breakline(rest))
 			break ;
 	}
@@ -94,7 +94,7 @@ char	*remove_breakline(char *rest)
 	j = i;
 	while (rest[j] != '\0')
 		j++;
-	temp = ft_strdup_line(rest);
+	temp = ft_strdup(rest);
 	free(rest);
 	rest = (char *)malloc((j - i + 1) * sizeof(char));
 	i++;

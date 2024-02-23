@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_operations.c                               :+:      :+:    :+:   */
+/*   execute_operations_both.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:52:22 by erramos           #+#    #+#             */
-/*   Updated: 2024/02/10 11:52:25 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:38:47 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ss(t_stk **stack_a, t_stk **stack_b)
 {
-	if ((*stack_a == NULL || (*stack_a)->next == NULL) 
+	if ((*stack_a == NULL || (*stack_a)->next == NULL)
 		&& (*stack_b == NULL || (*stack_b)->next == NULL))
 		return ;
 	swap(stack_a);
@@ -24,7 +24,7 @@ void	ss(t_stk **stack_a, t_stk **stack_b)
 
 void	rr(t_stk **stack_a, t_stk **stack_b)
 {
-	if ((*stack_a == NULL || (*stack_a)->next == NULL) 
+	if ((*stack_a == NULL || (*stack_a)->next == NULL)
 		&& (*stack_b == NULL || (*stack_b)->next == NULL))
 		return ;
 	rotate(stack_a);
@@ -34,7 +34,7 @@ void	rr(t_stk **stack_a, t_stk **stack_b)
 
 void	rrr(t_stk **stack_a, t_stk **stack_b)
 {
-	if ((*stack_a == NULL || (*stack_a)->next == NULL) 
+	if ((*stack_a == NULL || (*stack_a)->next == NULL)
 		&& (*stack_b == NULL || (*stack_b)->next == NULL))
 		return ;
 	rrotate(stack_a);

@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 16:27:51 by erramos           #+#    #+#             */
-/*   Updated: 2023/11/28 19:10:13 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:43:20 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 char	*get_next_line(int fd);
 
-size_t	ft_strlen_line(const char *s);
-char	*ft_strjoin_line(char *s1, char *s2);
-char	*ft_strdup_line(const char *s);
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*ft_strdup(const char *s);
 void	copy(char *dest, char *src, int i, int j);
 
 #endif
