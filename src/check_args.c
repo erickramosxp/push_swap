@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 19:47:07 by erramos           #+#    #+#             */
-/*   Updated: 2024/02/17 17:55:04 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 16:08:31 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	check_max_and_min(char **numbrs, int fix)
 	while (numbrs[fix])
 	{
 		nb = ft_atoi(numbrs[fix]);
-		if (nb < INT_MIN || nb > INT_MAX)
+		if (nb < -2147483648 || nb > 2147483647)
 		{
 			ft_printf("Error\n");
 			return (1);

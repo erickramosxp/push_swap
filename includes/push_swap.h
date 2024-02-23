@@ -6,7 +6,7 @@
 /*   By: erramos <erramos@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 15:31:45 by erramos           #+#    #+#             */
-/*   Updated: 2024/01/17 17:43:11 by erramos          ###   ########.fr       */
+/*   Updated: 2024/02/23 15:49:09 by erramos          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include "ft_printf.h"
 # include "libft.h"
-# include <limits.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
